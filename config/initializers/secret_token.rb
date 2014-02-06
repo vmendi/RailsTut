@@ -9,4 +9,19 @@
 
 # Make sure your secret_key_base is kept private
 # if you're sharing your code publicly.
-FirstApp::Application.config.secret_key_base = '5e3d045593491cc41ab0831068889c8c675553524dc35b825c0f1d2b7b716680a64cbd85cd11d10117e233d4689a40a821167f744ba0476631417e84dfcbdf94'
+require 'securerandom'
+
+def secure_token
+  token_file = Rails.root.join('.secret')
+  if File.exist?(token_file)
+    # Use the existing token.
+    File.read(token_file).chomp
+  else
+    # Generate a new token and store it in token_file.
+    token = SecureRandom.hex(64)
+    File.write(token_file, token)
+    token
+  end
+end
+
+FirstApp::Application.config.secret_key_base = secure_token

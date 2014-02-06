@@ -9,6 +9,7 @@ gem 'rails', '4.0.2'
 # which prevents potential conflicts with the database used by Heroku
 group :development do
   gem 'sqlite3', '1.3.8'
+  gem 'rspec-rails', '2.13.1'
 end
 
 # Use SCSS for stylesheets
@@ -35,6 +36,11 @@ gem 'jbuilder', '~> 1.2'
 group :doc do
   # bundle exec rake doc:rails generates the API under doc/api.
   gem 'sdoc', require: false
+end
+
+group :test do
+  gem 'selenium-webdriver', '2.35.1'
+  gem 'capybara', '2.1.0'
 end
 
 # Heroku production. pg is the PostgreSQL and rails_12factor gem, which is used by Heroku
